@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Net.NetworkInformation;
 using System.Text;
 
 namespace homework
@@ -75,7 +73,7 @@ namespace homework
             if (StringExist(population, quality) == false)
             {
                 Console.WriteLine("There is no string with that power!");
-                System.Environment.Exit(1);
+                Environment.Exit(1);
             }
             //random generate element of array until, until element comply conditions
             while (check != true)
@@ -90,8 +88,7 @@ namespace homework
         private static string Selection(string[] population)
         {
             Random rnd = new Random();
-            int k = 0;
-            k = rnd.Next(0, population.Length);
+            var k = rnd.Next(0, population.Length);
             return population[k];
         }
 
@@ -110,7 +107,6 @@ namespace homework
         {
             Random gen = new Random();
             StringBuilder cross = new StringBuilder();
-            string child = "";
             for (int i = 0; i < father.Length; i++)
             {
                 int pom = gen.Next(1, 3);
@@ -123,7 +119,7 @@ namespace homework
                         break;
                 }
             }
-            child = cross.ToString();
+            var child = cross.ToString();
             return child;
         }
         //mutation has 50% chance to randomly switch element
@@ -146,7 +142,7 @@ namespace homework
             return child;
         }
 
-        static void Main(string[] args)
+        static void Main()
         {
             int pSize = 20;
             int dim = 10;
@@ -163,7 +159,6 @@ namespace homework
             Console.WriteLine($"string father is {father} and his strength is {Fitness(father)}");
             Console.WriteLine($"string mother is {mother} and his strength is {Fitness(mother)}");
             Console.WriteLine($"string child is {child} and his strength is {Fitness(child)}");
-
         }
     }
 }
