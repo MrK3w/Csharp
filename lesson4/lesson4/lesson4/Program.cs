@@ -69,7 +69,7 @@ namespace lesson4
                 point[i].Y = o1;
             }
         }
-        static void GeneratePoints(ref Point point, int count)
+        static void GeneratePoints(Point point, int count)
         {
             Random Rand = new Random();
             for (int i = 0; i < count; i++)
@@ -101,38 +101,80 @@ namespace lesson4
                 point[two].check = true;
             }
 
-        static void NearestPoint(Point[] point,int number)
+        static void Bonus(Point[] point, char sign)
+        {
+            
+            Point sranda = new Point();
+            Point sranda1 = new Point();
+            Random Rand = new Random();
+            int o = Rand.Next(1, 15);
+                int o1 = Rand.Next(1, 15);
+                int o2 = Rand.Next(1, 15);
+                int o3 = Rand.Next(1, 15);
+                sranda.X = o;
+                sranda.Y = o1;
+                sranda1.X = o2;
+                sranda1.Y = o3;
+                Console.SetCursorPosition(sranda1.X, sranda1.Y);
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.Write(sign);
+                Console.SetCursorPosition(sranda.X, sranda.Y);
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.Write(sign);
+                for (int i = 0; i < point.Length; i++)
+                { 
+                    Print(point, GetDistance(point[i], sranda1) < GetDistance(point[i], sranda)? ConsoleColor.DarkBlue : ConsoleColor.DarkMagenta, i, '\u25A0');
+                }
+
+        }
+        static void NearestPoint(Point[] point, int number)
         {
             Point Near = new Point();
-            GeneratePoints(ref Near,1);
-            int poz = 0; 
-            var points = new Dictionary<int, float>();
-            for(int i =0;i < point.Length;i++) points.Add(i,GetDistance(Near, point[i]));
-            var sortedDict = from key in points orderby key.Value  select key;
-            var dic = sortedDict.ToDictionary((keyItem) => keyItem.Key, (valueItem) => valueItem.Value);
-            dic = dic.Take(number).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-            Print(Near,ConsoleColor.DarkCyan, '\u25A0');
-            foreach (KeyValuePair<int, float> kvp in dic)
+
+            Random Rand = new Random();
+
+                int o = Rand.Next(1, 15);
+                int o1 = Rand.Next(1, 15);
+                Near.X = o;
+                Near.Y = o1;
+
+            for (int i = 0; i < point.Length - 1; i++)
             {
-                Print(point[kvp.Key], ConsoleColor.DarkCyan, '\u25A0');
+                for (int j = 0; j < point.Length - i - 1; j++)
+                {
+                    if (GetDistance(Near, point[j + 1]) < GetDistance(Near, point[j]))
+                    {
+                        var tmp = point[j + 1];
+                        point[j + 1] = point[j];
+                        point[j] = tmp;
+                    }
+                }
             }
-           
+            Print(Near, ConsoleColor.Yellow, '\u25A0');
+            for (int i = 0; i < number; i++)
+                Print(point[i], ConsoleColor.DarkCyan, '\u25A0');
+
         }
-            static void Main()
+        static void Main()
             {
                 int len = 10;
                 Point[] point = new Point[len];
                 PrintArea(20, 20, ConsoleColor.DarkGray, '\u2588');
                 GeneratePoints(point,len);
-                FurtherstPoint(point, len);
-                Centropoid(point,10);
-                for (int i = 0; i < point.Length; i++)
-                {
-                    Print(point, point[i].check ? ConsoleColor.DarkGreen : ConsoleColor.DarkRed, i, '\u25A0');
-                }
-                NearestPoint(point,10);
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.SetCursorPosition(0, 20);
+                Centropoid(point, 10);
+            //Bonus(point, '\u25A0');
+            //FurtherstPoint(point, len);
+            for (int i = 0; i < point.Length; i++)
+            {
+                Print(point, ConsoleColor.DarkRed, i, '\u25A0');
+            }
+            for (int i = 0; i < point.Length; i++)
+            {
+                Print(point, point[i].check ? ConsoleColor.DarkGreen : ConsoleColor.DarkRed, i, '\u25A0');
+            }
+            NearestPoint(point,4);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(0, 20);
         }
         }
     }
