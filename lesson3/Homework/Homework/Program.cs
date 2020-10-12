@@ -5,7 +5,47 @@ namespace homework
 {
     class Program
     {
-        //function to generate random letter of string
+        static void Main()
+        {
+            int pSize = 20;
+            int dim = 10;
+            string[] population = new string[pSize];
+            //generate strings
+            GeneratePopulation(population, dim);
+            //print all strings
+           // PrintAll(population);
+
+            string father = Selection(population, 4);
+            string mother = Selection(population);
+            string child = Mutation(Crossover(father, mother));
+
+            Console.WriteLine($"string father is {father} and his strength is {Fitness(father)}");
+            Console.WriteLine($"string mother is {mother} and his strength is {Fitness(mother)}");
+            Console.WriteLine($"string child  is {child} and his strength is {Fitness(child)}");
+        }
+        /// <summary>
+        /// generate all strings
+        /// </summary>
+        /// <param name="population"></param>
+        /// <param name="stringLenght"></param>
+        private static void GeneratePopulation(string[] population, int stringLenght)
+        {
+            //lines of strings
+            for (int i = 0; i < population.Length; i++)
+            {
+                StringBuilder sb = new StringBuilder();
+                //characters in string
+                for (int j = 0; j < stringLenght; j++)
+                {
+                    sb.Append(Letter() + " ");
+                }
+                population[i] = sb.ToString();
+            }
+        }
+        /// <summary>
+        /// function to generate random letter of string
+        /// </summary>
+        /// <returns>return char(generated letter)</returns>
         private static char Letter()
         {
             Random rnd = new Random();
@@ -13,26 +53,11 @@ namespace homework
             int k = rnd.Next(0, 4);
             return input[k];
         }
-
-        //generate all strings
-        private static void GeneratePopulation(string[] population, int stringLenght)
-        {
-            //lines of strings
-            for (int i = 0; i < population.Length; i++)
-            {
-                StringBuilder sb = new StringBuilder();
-
-                //characters in string
-                for (int j = 0; j < stringLenght; j++)
-                {
-                   
-                    sb.Append(Letter() + " ");
-                }
-                population[i] = sb.ToString();
-            }
-        }
-
-        //calculate strength of string(occurrence's of A)
+        /// <summary>
+        /// calculate strength of string(occurrence's of A)
+        /// </summary>
+        /// <param name="fit"></param>
+        /// <returns>return int which is strength </returns>
         private static int Fitness(string fit)
         {
             int poc = 0;
@@ -43,26 +68,12 @@ namespace homework
             }
             return poc;
         }
-        //check if string exists with the selected power
-        //return false if none string was found
-        private static bool StringExist(string[] population,int quality)
-        {
-            int poc = 0;
-            for (int i = 0; i < population.Length; i++)
-            {
-                if (quality <= Fitness(population[i]))
-                {
-                    poc++;
-                }
-            }
-            if (poc == 0)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
+        /// <summary>
+        /// find random string with requirement
+        /// </summary>
+        /// <param name="population"></param>
+        /// <param name="quality"></param>
+        /// <returns>returns selected string</returns>
         private static string Selection(string[] population, int quality)
         {
             Random rnd = new Random();
@@ -84,7 +95,11 @@ namespace homework
             return population[k];
         }
 
-        //function generate random element, no requirements
+        /// <summary>
+        /// function generate random element, no requirements
+        /// </summary>
+        /// <param name="population"></param>
+        /// <returns> return random string</returns>
         private static string Selection(string[] population)
         {
             Random rnd = new Random();
@@ -92,7 +107,24 @@ namespace homework
             return population[k];
         }
 
-        //Print all strings
+        //check if string exists with the selected power
+        //return false if none string was found
+        private static bool StringExist(string[] population,int quality)
+        {
+            for (int i = 0; i < population.Length; i++)
+            {
+                if (quality <= Fitness(population[i]))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// print all strings
+        /// </summary>
+        /// <param name="population"></param>
         private static void PrintAll(string[] population)
         {
             for (int i = 0; i < population.Length; i++)
@@ -102,7 +134,13 @@ namespace homework
             Console.WriteLine("______________________________________________\n\n");
         }
 
-        //method for random crossing parents elements
+        /// <summary>
+        /// ethod for random crossing parents elements
+        /// </summary>
+        /// <param name="father"></param>
+        /// <param name="mother"></param>
+        /// <returns>return crossover string</returns>
+        
         private static string Crossover(string father, string mother)
         {
             Random gen = new Random();
@@ -122,7 +160,11 @@ namespace homework
             var child = cross.ToString();
             return child;
         }
-        //mutation has 50% chance to randomly switch element
+        /// <summary>
+        /// mutation has 50% chance to randomly switch element
+        /// </summary>
+        /// <param name="child"></param>
+        /// <returns> returns mutated string</returns>
         private static string Mutation(string child)
         {
             //remove all whitespaces from string
@@ -140,25 +182,6 @@ namespace homework
             }
             child = evolved.ToString();
             return child;
-        }
-
-        static void Main()
-        {
-            int pSize = 20;
-            int dim = 10;
-            string[] population = new string[pSize];
-            //generate strings
-            GeneratePopulation(population, dim);
-            //print all strings
-            PrintAll(population);
-
-            string father = Selection(population, 3);
-            string mother = Selection(population);
-            string child = Mutation(Crossover(father, mother));
-
-            Console.WriteLine($"string father is {father} and his strength is {Fitness(father)}");
-            Console.WriteLine($"string mother is {mother} and his strength is {Fitness(mother)}");
-            Console.WriteLine($"string child is {child} and his strength is {Fitness(child)}");
         }
     }
 }
