@@ -172,7 +172,7 @@ namespace lesson4
             {
                 Print(point, point[i].check ? ConsoleColor.DarkGreen : ConsoleColor.DarkRed, i, '\u25A0');
             }
-            NearestPoint(point,4);
+            //NearestPoint(point,4);
             Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(0, 20);
         }
