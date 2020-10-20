@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace lesson5
 {
-
     public struct Brick
     {
         public int X;
@@ -15,32 +14,45 @@ namespace lesson5
     {
         static void Main(string[] args)
         {
+            Random brick = new Random();
+            const int capacity = 10;
             Console.BackgroundColor = ConsoleColor.Black;
-            Brick[] kostka = new Brick[4];
-            Brick[] kostka1 = new Brick[4];
-            Brick[] kostka2 = new Brick[4];
-            Brick[] kostka3 = new Brick[4];
-            Brick[] kostka4 = new Brick[4];
-            Brick[] kostka5 = new Brick[4];
-            Brick[] kostka6 = new Brick[4];
-            Queue fronta = new Queue(10);
-            Line kosticka = new Line(kostka,0, 1, 0, ConsoleColor.Cyan);
-            Lbrick kosticka1 = new Lbrick(kostka1,0, 3, 0, ConsoleColor.White);
-            Square kosticka2= new Square(kostka2,0, 6, 0, ConsoleColor.Yellow);
-            Jbrick kosticka3 = new Jbrick(kostka3,0, 9, 0, ConsoleColor.DarkBlue);
-            Sblock kosticka4 = new Sblock(kostka4,0, 12, 0, ConsoleColor.DarkGreen);
-            Tblock kosticka5 = new Tblock(kostka5,0, 15, 0, ConsoleColor.Magenta);
-            Zblock kosticka6 = new Zblock(kostka6,0, 18, 0, ConsoleColor.Red);
-            fronta.Enqueue(kosticka);
-            fronta.Enqueue(kosticka1);
-            fronta.Enqueue(kosticka2);
-            fronta.Enqueue(kosticka3);
-            fronta.Enqueue(kosticka4);
-            fronta.Enqueue(kosticka5);
-            fronta.Enqueue(kosticka6);
+            Queue fronta = new Queue(capacity);
+            Tetromino[] Tetromina = new Tetromino[capacity];
+            int poz = 0;
+            for (int i = 0; i < capacity; i++)
+            {
+               int brickos = brick.Next(1, 8);
+                switch(brickos)
+                {
+                    case 1: Tetromina[i] = new Line(new Brick[4], 0, i*3+1+poz, 1, ConsoleColor.Cyan);
+                        poz += 2;
+                        break;
+                    case 2:
+                        Tetromina[i] = new Lbrick(new Brick[4], 0, i * 3 + 1+poz, 0, ConsoleColor.White);
+                        break;
+                    case 3:
+                        Tetromina[i] = new Square(new Brick[4], 0, i * 3 + 1+ poz, 0, ConsoleColor.Yellow);
+                        break;
+                    case 4:
+                        Tetromina[i] = new Jbrick(new Brick[4], 0, i * 3 + 1+ poz, 0, ConsoleColor.DarkBlue);
+                        break;
+                    case 5:
+                        Tetromina[i] = new Sblock(new Brick[4], 0, i * 3 + 1+ poz, 0, ConsoleColor.DarkGreen);
+                        break;
+                    case 6:
+                        Tetromina[i] = new Tblock(new Brick[4], 0, i * 3 + 1+ poz, 0, ConsoleColor.Magenta);
+                        break;
+                    case 7:
+                        Tetromina[i] = new Zblock(new Brick[4], 0, i * 3 + 1+ poz, 0, ConsoleColor.Red);
+                        break;
+                }
+
+                fronta.Enqueue(Tetromina[i]);
+            }
             fronta.Print();
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(0, 23);
+            Console.SetCursorPosition(0, 35);
         }
     }
 }

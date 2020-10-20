@@ -29,13 +29,14 @@ namespace lesson5
                 this.size++;
             }
         }
+
         public void Dequeue()
         {
             if (this.size == 0)
                 Console.WriteLine("The Queue is empty");
             else
             {
-                this.arr[size] = null;
+                this.arr[size - 1] = null;
                 this.size--;
             }
         }

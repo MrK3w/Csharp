@@ -9,10 +9,10 @@ namespace lesson5
     {
         public Sblock(Brick[] kostka, int x, int y, int orientation, ConsoleColor color) : base(kostka, x, y, orientation, color)
         {
-            CreateBrick(kostka,x, y);
+            CreateBrick(kostka,x, y,  orientation);
             Color = color;
         }
-        public override void CreateBrick(Brick[] kostka,int x, int y)
+        public override void CreateBrick(Brick[] kostka,int x, int y, int orientation)
         {
             kostka[0].X = 1;
             kostka[0].Y = 0;

@@ -28,7 +28,7 @@ namespace lesson5
         {
         }
 
-        public virtual void CreateBrick(Brick[] kostka,int x, int y)
+        public virtual void CreateBrick(Brick[] Kostka,int x, int y, int orientation)
         {
         }
     }

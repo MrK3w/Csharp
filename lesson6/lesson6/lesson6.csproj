@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+	 <PackageReference Include="SDL" Version="1.2.15.16" />
+	 <PackageReference Include="sdl2.nuget" Version="2.0.12" GeneratePathProperty="true" />
+	 <PackageReference Include="sdl2_image.nuget" Version="2.0.5" GeneratePathProperty="true" />
+  </ItemGroup>
+
+  <!--<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+	  <Copy SourceFiles="$(Pkgsdl2_nuget)\..\..\sdl2.nuget.redist\2.0.12\build\native\bin\x64\dynamic\SDL2.dll" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+	  <Copy SourceFiles="$(Pkgsdl2_image_nuget)\..\..\sdl2_image.nuget.redist\2.0.5\build\native\bin\x64\dynamic\SDL2_image.dll" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+  </Target>-->
+
+	<ItemGroup>
+		<Content Include="$(Pkgsdl2_nuget)\..\..\sdl2.nuget.redist\2.0.12\build\native\bin\x64\dynamic\*.dll" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+		<Content Include="$(Pkgsdl2_image_nuget)\..\..\sdl2_image.nuget.redist\2.0.5\build\native\bin\x64\dynamic\*.dll" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+		<Content Include=".\assets\*.*" TargetPath="$(OutDir)\assets\" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="$(Pkgsdl2_image_nuget)\..\..\sdl2_image.nuget\2.0.5\..\..\sdl2_image.nuget.redist\2.0.5\build\native\bin\x64\dynamic\libjpeg-9.dll" />
+	</ItemGroup>
+	
+</Project>
+

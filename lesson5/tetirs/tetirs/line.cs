@@ -8,10 +8,10 @@ namespace lesson5
     {
         public Line(Brick[] kostka, int x, int y, int orientation, ConsoleColor color) : base(kostka, x, y, orientation, color)
         {
-            CreateBrick(kostka,x, y);
+            CreateBrick(kostka,x, y,orientation);
             Color = color;
         }
-        public override void CreateBrick(Brick[] kostka, int x, int y)
+        public override void CreateBrick(Brick[] kostka, int x, int y,int orientation)
         {
             kostka[0].X = 0;
             kostka[1].X = 1;
@@ -26,7 +26,16 @@ namespace lesson5
                 kostka[i].X += x;
                 kostka[i].Y += y;
             }
-         
+
+            if (orientation == 1)
+            {
+                for (int i = 0; i < kostka.Length; i++)
+                {
+                    int pom =  kostka[i].X;
+                    kostka[i].X = 0;
+                    kostka[i].Y += pom;
+                }
+            }
         }
     }
 }
