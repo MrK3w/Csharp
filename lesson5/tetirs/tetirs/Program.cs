@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading;
 
 namespace tetirs
@@ -10,22 +11,18 @@ namespace tetirs
         public int PositionX;
         public int PositionY;
     }
+ 
     class Program
     {
-        const int CAPACITY = 10;
+        private int i = 10;
         static void Main(string[] args)
         {
             Console.BackgroundColor = ConsoleColor.Black;
-            Queue SetOfBricks = new Queue(CAPACITY);
-            Tetromino[] tetromina = new Tetromino[CAPACITY];
-            for (int i = 0; i < CAPACITY; i++)
-            {
-                tetromina[i] = BlockFactory.Build(i);
-                SetOfBricks.Enqueue(tetromina[i]);
-            }
-            SetOfBricks.Print();
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(0, 35);
+            GameBoard board = new GameBoard();
+            board.Play();
+            /*board.ClearBoard();*/
+            Console.SetCursorPosition(20,20);
+            Console.BackgroundColor = ConsoleColor.Black;
         }
     }
 }

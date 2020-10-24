@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -66,13 +67,13 @@ namespace tetirs
                 for (int j = 0; j < kosticka.Size; j++)
                 {
                     Console.ForegroundColor = kosticka.Color;
-                    char sign = '\u2588';
+                  
 
                     int currentBrickX = kosticka.tetrominoShape[j].PositionX;
                     int currentBrickY = kosticka.tetrominoShape[j].PositionY;
 
                     Console.SetCursorPosition(currentBrickX, currentBrickY);
-                    Console.Write(sign);
+                    Console.Write(Constants.SIGN);
                 }
             }
         }

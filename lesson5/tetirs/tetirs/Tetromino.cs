@@ -31,5 +31,14 @@ namespace tetirs
         public virtual void CreateBrick(Brick[] tetrominoShape,int x, int y, int orientation)
         {
         }
+
+        public void TranslatePosition(int x, int y)
+        {
+            for (int i = 0; i < tetrominoShape.Length; i++)
+            {
+                tetrominoShape[i].PositionX += x;
+                tetrominoShape[i].PositionY += y;
+            }
+        }
     }
     }
