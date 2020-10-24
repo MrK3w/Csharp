@@ -26,6 +26,7 @@ namespace tetirs
             tetrominoShape[2].PositionY = 1;
             tetrominoShape[3].PositionX = 2;
             tetrominoShape[3].PositionY = 1;
+
             for (int i = 0; i < tetrominoShape.Length; i++)
             {
                 tetrominoShape[i].PositionX += x;

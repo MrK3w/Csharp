@@ -12,7 +12,7 @@ namespace tetirs
         public ConsoleColor Color;
         public Brick[] tetrominoShape;
 
-        public int size { get; set; }
+        public int Size { get; set; }
 
         public Tetromino(Brick[] tetrominoShape, int x, int y, int orientation, ConsoleColor color)
         {
@@ -21,7 +21,7 @@ namespace tetirs
             this.Y = y;
             this.Orientation = orientation;
             this.Color = color;
-            this.size = tetrominoShape.Length;
+            this.Size = tetrominoShape.Length;
         }
 
         public Tetromino()
