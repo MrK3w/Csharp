@@ -11,6 +11,13 @@ namespace tetirs
             CreateBrick(tetrominoShape,x, y,orientation);
             Color = color;
         }
+        /// <summary>
+        /// creating Square tetromino
+        /// </summary>
+        /// <param name="tetrominoShape"> empty structure of Brick[]</param>
+        /// <param name="x">X position of brick</param>
+        /// <param name="y">Y position of brick</param>
+        /// <param name="orientation">orientation of brick</param>
         public override void CreateBrick(Brick[] tetrominoShape, int x, int y,int orientation)
         {
             tetrominoShape[0].PositionX = 0;

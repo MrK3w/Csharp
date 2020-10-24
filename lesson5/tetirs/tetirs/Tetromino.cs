@@ -7,10 +7,10 @@ namespace tetirs
     public class Tetromino
     {
         public int X;
-        public int Y { get; set; }
-        public int Orientation { get; set; }
-        public ConsoleColor Color { get; set; }
-        public Brick[] tetrominoShape { get; set; }
+        public int Y;
+        public int Orientation;
+        public ConsoleColor Color;
+        public Brick[] tetrominoShape;
 
         public int size { get; set; }
 

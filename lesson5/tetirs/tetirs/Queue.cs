@@ -11,36 +11,46 @@ namespace tetirs
         private int capacity;
         private Tetromino[] arr;
         private int size;
-
+        /// <summary>
+        /// creating new queue
+        /// </summary>
+        /// <param name="capacity">maximal capacity of queue</param>
         public Queue(int capacity)
         {
             this.capacity = capacity;
             this.size = 0;
             this.arr = new Tetromino[capacity];
         }
-
+        /// <summary>
+        /// Adding new Tetromino to queue
+        /// </summary>
+        /// <param name="brick"></param>
         public void Enqueue(Tetromino brick)
         {
 
-            if (this.size > this.capacity) Console.WriteLine("Queue is full!");
+            if (this.size > this.capacity) Console.WriteLineblock("Queue is full!");
             else
             {
                 this.arr[size] = brick;
                 this.size++;
             }
         }
-
+        /// <summary>
+        /// Dequeue a tetromino from queue
+        /// </summary>
         public void Dequeue()
         {
             if (this.size == 0)
-                Console.WriteLine("The Queue is empty");
+                Console.WriteLineblock("The Queue is empty");
             else
             {
                 this.arr[size - 1] = null;
                 this.size--;
             }
         }
-
+        /// <summary>
+        /// Printing all Tetromino
+        /// </summary>
         public void Print()
         {
             while (size != 0)

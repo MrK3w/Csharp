@@ -4,26 +4,31 @@ namespace tetirs
 {
     public static class BlockFactory
     {
-        public static Tetromino Build(int i)
+        /// <summary>
+        /// Factory Pattern for creating different tetrominoblocks
+        /// </summary>
+        /// <param name="position"> moving every brick lower than last</param>
+        /// <returns>return new tetromino object</returns>
+        public static Tetromino Build(int position)
         {
             Random brick = new Random();
             int selectRandomBrick = brick.Next(1, 8);
             switch (selectRandomBrick)
             {
                 case 1:
-                    return new Line(new Brick[4], 0, i * 3 + 1, 0, ConsoleColor.Cyan);
+                    return new Lineblock(new Brick[4], 0, position * 3 + 1, 0, ConsoleColor.Cyan);
                 case 2:
-                    return new Lbrick(new Brick[4], 0, i * 3 + 1, 0, ConsoleColor.White);
+                    return new Lbrick(new Brick[4], 0, position * 3 + 1, 0, ConsoleColor.White);
                 case 3:
-                    return new Square(new Brick[4], 0, i * 3 + 1, 0, ConsoleColor.Yellow);
+                    return new Square(new Brick[4], 0, position * 3 + 1, 0, ConsoleColor.Yellow);
                 case 4:
-                    return new Jbrick(new Brick[4], 0, i * 3 + 1, 0, ConsoleColor.DarkBlue);
+                    return new Jbrick(new Brick[4], 0, position * 3 + 1, 0, ConsoleColor.DarkBlue);
                 case 5:
-                    return new Sblock(new Brick[4], 0, i * 3 + 1, 0, ConsoleColor.DarkGreen);
+                    return new Sblock(new Brick[4], 0, position * 3 + 1, 0, ConsoleColor.DarkGreen);
                 case 6:
-                    return new Tblock(new Brick[4], 0, i * 3 + 1, 0, ConsoleColor.Magenta);
+                    return new Tblock(new Brick[4], 0, position * 3 + 1, 0, ConsoleColor.Magenta);
                 case 7:
-                    return new Zblock(new Brick[4], 0, i * 3 + 1, 0, ConsoleColor.Red);
+                    return new Zblock(new Brick[4], 0, position * 3 + 1, 0, ConsoleColor.Red);
                 default:
                     return new Tetromino();
             }
