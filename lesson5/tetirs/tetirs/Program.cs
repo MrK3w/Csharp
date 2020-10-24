@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace lesson5
+namespace tetirs
 {
     public struct Brick
     {
-        public int X;
-        public int Y;
+        public int PositionX;
+        public int PositionY;
     }
     class Program
     {
@@ -15,14 +15,14 @@ namespace lesson5
         static void Main(string[] args)
         {
             Console.BackgroundColor = ConsoleColor.Black;
-            Queue fronta = new Queue(CAPACITY);
+            Queue SetOfBricks = new Queue(CAPACITY);
             Tetromino[] tetromina = new Tetromino[CAPACITY];
             for (int i = 0; i < CAPACITY; i++)
             {
                 tetromina[i] = BlockFactory.Build(i);
-                fronta.Enqueue(tetromina[i]);
+                SetOfBricks.Enqueue(tetromina[i]);
             }
-            fronta.Print();
+            SetOfBricks.Print();
             Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(0, 35);
         }

@@ -1,14 +1,14 @@
 ﻿using System;
 
-namespace lesson5
+namespace tetirs
 {
     public static class BlockFactory
     {
         public static Tetromino Build(int i)
         {
             Random brick = new Random();
-            int brickos = brick.Next(1, 8);
-            switch (brickos)
+            int selectRandomBrick = brick.Next(1, 8);
+            switch (selectRandomBrick)
             {
                 case 1:
                     return new Line(new Brick[4], 0, i * 3 + 1, 0, ConsoleColor.Cyan);

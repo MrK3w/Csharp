@@ -2,38 +2,38 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace lesson5
+namespace tetirs
 {
     class Line : Tetromino
     {
-        public Line(Brick[] kostka, int x, int y, int orientation, ConsoleColor color) : base(kostka, x, y, orientation, color)
+        public Line(Brick[] tetrominoShape, int x, int y, int orientation, ConsoleColor color) : base(tetrominoShape, x, y, orientation, color)
         {
-            CreateBrick(kostka,x, y,orientation);
+            CreateBrick(tetrominoShape,x, y,orientation);
             Color = color;
         }
-        public override void CreateBrick(Brick[] kostka, int x, int y,int orientation)
+        public override void CreateBrick(Brick[] tetrominoShape, int x, int y,int orientation)
         {
-            kostka[0].X = 0;
-            kostka[1].X = 1;
-            kostka[2].X = 2;
-            kostka[3].X = 3;
-            kostka[0].Y = 0;
-            kostka[1].Y = 0;
-            kostka[2].Y = 0;
-            kostka[3].Y = 0;
-            for (int i = 0; i < kostka.Length; i++)
+            tetrominoShape[0].PositionX = 0;
+            tetrominoShape[1].PositionY = 1;
+            tetrominoShape[2].PositionX = 2;
+            tetrominoShape[3].PositionX = 3;
+            tetrominoShape[0].PositionY = 0;
+            tetrominoShape[1].PositionY = 0;
+            tetrominoShape[2].PositionY = 0;
+            tetrominoShape[3].PositionY = 0;
+            for (int i = 0; i < tetrominoShape.Length; i++)
             {
-                kostka[i].X += x;
-                kostka[i].Y += y;
+                tetrominoShape[i].PositionX += x;
+                tetrominoShape[i].PositionY += y;
             }
 
             if (orientation == 1)
             {
-                for (int i = 0; i < kostka.Length; i++)
+                for (int i = 0; i < tetrominoShape.Length; i++)
                 {
-                    int pom =  kostka[i].X;
-                    kostka[i].X = 0;
-                    kostka[i].Y += pom;
+                    int pom =  tetrominoShape[i].PositionX;
+                    tetrominoShape[i].PositionX = 0;
+                    tetrominoShape[i].PositionY += pom;
                 }
             }
         }

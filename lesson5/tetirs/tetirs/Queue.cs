@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace lesson5
+namespace tetirs
 {
     public class Queue
     {
@@ -52,7 +52,7 @@ namespace lesson5
                 {
                     Console.ForegroundColor = kosticka.Color;
                     char sign = '\u2588';
-                    Console.SetCursorPosition(kosticka.Kostka[j].X, kosticka.Kostka[j].Y);
+                    Console.SetCursorPosition(kosticka.tetrominoShape[j].PositionX, kosticka.tetrominoShape[j].PositionY);
                     Console.Write(sign);
                 }
             }

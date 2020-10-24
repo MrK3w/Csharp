@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace lesson5
+namespace tetirs
 {
     class Lbrick : Tetromino
     {
-        public Lbrick(Brick[] kostka, int x, int y, int orientation, ConsoleColor color) : base(kostka, x, y, orientation, color)
+        public Lbrick(Brick[] tetrominoShape, int x, int y, int orientation, ConsoleColor color) : base(tetrominoShape, x, y, orientation, color)
         {
-            CreateBrick(kostka,x, y, orientation);
+            CreateBrick(tetrominoShape,x, y, orientation);
             Color = color;
         }
-        public override void CreateBrick(Brick[] kostka,int x, int y, int orientation)
+        public override void CreateBrick(Brick[] tetrominoShape,int x, int y, int orientation)
         {
-            kostka[0].X = 2;
-            kostka[0].Y = 0;
-            kostka[1].X = 0;
-            kostka[1].Y = 1;
-            kostka[2].X = 1;
-            kostka[2].Y = 1;
-            kostka[3].X = 2;
-            kostka[3].Y = 1;
-            for (int i = 0; i < kostka.Length; i++)
+            tetrominoShape[0].PositionX = 2;
+            tetrominoShape[0].PositionY = 0;
+            tetrominoShape[1].PositionX = 0;
+            tetrominoShape[1].PositionY = 1;
+            tetrominoShape[2].PositionX = 1;
+            tetrominoShape[2].PositionY = 1;
+            tetrominoShape[3].PositionX = 2;
+            tetrominoShape[3].PositionY = 1;
+            for (int i = 0; i < tetrominoShape.Length; i++)
             {
-                kostka[i].X += x;
-                kostka[i].Y += y;
+                tetrominoShape[i].PositionX += x;
+                tetrominoShape[i].PositionY += y;
             }
         }
     }
